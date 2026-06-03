@@ -12,6 +12,14 @@ jobs:
     timeout-minutes: 10
 
     steps:
+
+      - name: Print run time
+        run: |
+          echo "UTC now: $(date -u '+%Y-%m-%d %H:%M:%S %Z')"
+          echo "Shanghai now: $(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S %Z')"
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Schedule: ${{ github.event.schedule }}"
+        
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
